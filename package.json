@@ -1,0 +1,16 @@
+{
+  "name": "Git-what-we-MEAN",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jack829/Git-what-we-MEAN.git"
+  },
+  "homepage": "https://github.com/jack829/Git-what-we-MEAN",
+  "dependencies": {
+    "express": "~4",
+    "mongodb": "^1.4.34",
+    "mongoose": "^3.8.24"
+  }
+}
