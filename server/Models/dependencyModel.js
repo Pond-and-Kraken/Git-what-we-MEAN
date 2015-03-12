@@ -1,4 +1,5 @@
 var mongoose = require ('mongoose');
+var Repo = require('./repoModel.js');
 
 var DependencySchema = new mongoose.Schema({
   name: {
@@ -10,11 +11,19 @@ var DependencySchema = new mongoose.Schema({
     required: true
   },
   repos: [{
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Repo'
   }]
 });
 
 var Dependency = mongoose.model('Dependency', DependencySchema, 'Dependencies');
-
+var testDependency = new Dependency({
+  name: 'testName',
+  devDependency: true,
+  repos: []
+});
+testDependency.save(function(err,t){
+  if (err) console.log("ERROR!");
+  console.log(t);
+})
 module.exports = Dependency;

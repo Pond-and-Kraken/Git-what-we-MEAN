@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Dependency = require('./dependencyModel.js');
 
 var RepoSchema = new mongoose.Schema({
   name: {
@@ -6,7 +7,7 @@ var RepoSchema = new mongoose.Schema({
     required: true
   },
   dependencies: [{
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'Dependency'
   }]
 });
