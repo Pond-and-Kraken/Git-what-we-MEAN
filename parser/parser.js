@@ -1,10 +1,33 @@
 //Used to parse .json files
 var fs = require('fs');
 
-//folder with all the .json data scrapped from git
+//folder with all the .json data scraped from git
 var dir= __dirname +'/../jsonData';
 var data = {};
+var object = {};
+var Repos = require('../server/Models/repoModel');
+var Dependencies = require('../server/Models/dependencyModel');
 
+///////////////////////////
+
+var mongoose = require('mongoose');
+var mongoURI = 'mongodb://localhost/meangit';
+
+mongoose.connect(mongoURI);
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(callback) {
+  console.log('MONGODB CONNECTION OPEN');
+});
+
+module.exports = db;
+
+///////////////////////////
+
+// var insertDB = function(){
+//   console.log(JSON.stringify(object));
+// }
 
 //loop through the data read in
 var parseData = function(){
@@ -13,7 +36,7 @@ var parseData = function(){
   var devdependencies = [];
   var gitName = '';
 
-console.log(keys[0]);
+  console.log(keys[0]);
 
   //remove bower.json.txt or package.json.txt from file name to get git name
   var temp = keys[0].split('.');
@@ -43,8 +66,49 @@ console.log(keys[0]);
     }
   }
   console.log('Git project:', gitName)
-  console.log("Dependencies:", dependencies);
-  console.log('Devdependencies:',devdependencies);
+  console.log("Dependencies:", dependencies.concat(devdependencies));
+  //console.log('Devdependencies:',devdependencies);
+  //object[gitName] = dependencies.concat(devdependencies);
+  //insertDB(object);
+  //console.log(JSON.stringify(object));
+  var deps = dependencies.concat(devdependencies);
+  var repoID;
+  var dependencyID;
+  Repos.findOne({name: gitName}, function(error, repo){
+    if (error) console.log('error: ', error);
+    if (!repo) {
+      var newRepo = new Repos({
+        name: gitName,
+        dependencies: []
+      });
+      newRepo.save(function(error, newRepo){
+        if (error) return console.error('Creating new Repo:',error);
+        repoID = newRepo._id;
+      });
+    }
+    //else
+  });
+
+  for(var i = 0; i < deps.length; i++){
+    Dependencies.findOne({name: deps[i]}), function(error, dependency){
+      if(error) console.log('error: ', error);
+      if(!dependency){
+        var newDependency = new Dependency({
+          name: deps[i],
+          repos: [repoID]
+        });
+
+        newDependency.save(function(error, newDependency){
+          if(error) return console.error('creating new Dependency:', error);
+          dependencyID = newDependency._id;
+        });
+      }
+      //else 
+    }
+  }
+  
+
+
 }
 
 //Inserting data into the database:
@@ -70,15 +134,44 @@ var readFiles = function(parseData) {
         data = {};
         //In case file contains Not Found, stringify before parsing to avoid an error
         data[file]=JSON.parse(JSON.stringify(jsonData));
-        parseData();
-            
+        parseData();   
+        //console.log(object);
       });
-     
     });
-
   });
+
 
 }
 
 
 readFiles(parseData);
+
+// exports.saveLink = function(req, res) {
+//   var uri = req.body.url;
+
+//   if (!util.isValidUrl(uri)) {
+//     console.log('Not a valid url: ', uri);
+//     return res.send(404);
+//   }
+
+//   Link.findOne({ url: uri}, function (err, link){
+//     if (err) return  console.error('Signup database lookup:',err);
+//     if (!link) {
+//         }
+//         var newLink = new Link({
+//           url: uri,
+//           title: title,
+//           base_url: req.headers.origin
+//         });
+//         newLink.hashURL();
+//         newLink.save(function(err, newLink) {
+//           if (err) return console.error('Creating new link::',err);
+//           res.send(200, newLink);
+//         });
+//       });
+//     } else {
+//       res.send(200, link);
+//     }
+//   });
+
+// };
