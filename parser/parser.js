@@ -1,7 +1,7 @@
 //Used to parse .json files
 var fs = require('fs');
 
-//file with all the .json data scrapped from git
+//folder with all the .json data scrapped from git
 var dir= __dirname +'/../jsonData';
 var data = {};
 
@@ -19,7 +19,7 @@ console.log(keys[0]);
   var temp = keys[0].split('.');
   gitName = temp.slice(0, temp.length-3).join('.');
 
-
+ 
   //If no .json data was found
   if(JSON.stringify(data[keys[0]]).indexOf('Not Found') >= 0) {
     dependencies.push('Not Found');
@@ -47,6 +47,16 @@ console.log(keys[0]);
   console.log('Devdependencies:',devdependencies);
 }
 
+//Inserting data into the database:
+  //for each file, create a new repo instance
+    // for each dependency in the file:
+      // if the dependency is not in the database, create a new dependency instance
+      // else
+        // find the dependency
+      // add the repo to the dependencies repo array
+      // save the dependency
+      // add the dependency to the repo dependencies array
+  // save the repo 
 
 //read in the files
 var readFiles = function(parseData) {
