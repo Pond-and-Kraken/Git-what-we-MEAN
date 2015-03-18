@@ -8,7 +8,7 @@ var Repos = require('../server/Models/repoModel1');
 var Dependencies = require('../server/Models/dependencyModel1');
 
 var mongoose = require('mongoose');
-var mongoURI = 'mongodb://localhost/meangit2';
+var mongoURI = process.env.MONGO || 'mongodb://localhost/meangit2';
 mongoose.connect(mongoURI);
 var db = mongoose.connection;
 

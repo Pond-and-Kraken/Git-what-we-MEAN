@@ -33,7 +33,7 @@
 Use github’s interface to make a fork of the repo, then add that repo as an upstream remote:
 
 ```
-git remote add upstream https://github.com/Pond-and-Kraken/Git-what-we-MEAN.git
+git remote add upstream https://github.com/Pond-andKraken/Git-what-we-MEAN.git
 ```
 
 ### Cut a namespaced feature branch from master
