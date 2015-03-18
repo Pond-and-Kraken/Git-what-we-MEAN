@@ -58,18 +58,18 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
+          'Client/**/*.js',
+          'Client/lib/**/*.js',
         ],
         tasks: [
           'concat',
           'uglify'
         ]
       },
-      css: {
-        files: 'public/*.css',
-        tasks: ['cssmin']
-      }
+     // css: {
+     //   files: 'public/*.css',
+     //   tasks: ['cssmin']
+    //  }
     },
 
     shell: {
@@ -110,9 +110,13 @@ module.exports = function(grunt) {
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
-  grunt.registerTask('test', [
+ /* grunt.registerTask('test', [
     'mochaTest','jshint'
-  ]);
+  ]);*/
+
+ grunt.registerTask('test', [
+    'jshint'
+  ]); 
 
   grunt.registerTask('build', [
     'concat',
