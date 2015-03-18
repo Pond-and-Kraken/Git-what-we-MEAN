@@ -4,7 +4,8 @@ var Dependency = require('./dependencyModel.js');
 var RepoSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    //required: true,
+    unique: true
   },
   dependencies: [{
     type: mongoose.Schema.Types.ObjectId,

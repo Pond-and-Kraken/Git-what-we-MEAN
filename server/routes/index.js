@@ -5,7 +5,8 @@ var mongoose = require('mongoose');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Git What We Mean?' });
+  console.log('index.js router.get');
+  res.render('index');
 });
 
 module.exports = router;
