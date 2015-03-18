@@ -7,17 +7,17 @@ var DependencySchema = new mongoose.Schema({
     //required: true,
     unique: true
   },
-  // devDependency: {
-  //   type: Boolean,
-  //   required: true
-  // },
+  devOrNot: {
+    type: Boolean,
+    required: true
+  },
   repos: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Repo'
-  }]
+      type: mongoose.Schema.Types.String,
+      ref: 'Repo'
+    }]
 });
 
-var Dependency = mongoose.model('Dependency', DependencySchema, 'Dependencies');
+var Dependency = mongoose.model('Dependency1', DependencySchema, 'Dependencies');
 
 
 // var testDependency = new Dependency({

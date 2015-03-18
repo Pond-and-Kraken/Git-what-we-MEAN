@@ -3,7 +3,8 @@ angular.module('gitWhatWeMean.dependencies', [])
   .controller('DependenciesController', ['$scope', '$filter', 'Dependencies', function($scope, $filter, Dependencies) {
 
     $scope.data = [];
-
+    $scope.search = '';
+    console.log("In the controller");
     //var orderBy = $filter('orderBy');
     $scope.getDependencies = function() {
       // Use Dependencies factory to get array of Dependeny objects from database
@@ -25,6 +26,7 @@ angular.module('gitWhatWeMean.dependencies', [])
   }])
   .factory('Dependencies', function($http) {
     var getDependencies = function() {
+      console.log("Get Request Made");
       return $http({
         method: 'GET',
         url: '/dependencies'

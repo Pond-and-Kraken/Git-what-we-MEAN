@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="DependenciesController">
     <!-- <div class="container">
         <a href="#/links" class="navbar-brand">Shortly</a>
         <ul class="nav navbar-default nav-tabs navbar-nav navbar-right">
@@ -13,7 +13,7 @@
     <table class="table">
         <th>Dependency Name</th>
         <th>Usage</th>
-        <tr ng-repeat='dependency in data | filter:{title: search}'>
+        <tr ng-repeat='dependency in data | filter:{name: search}'>
             <td>{{dependency.name}}</td>
             <td>{{dependency.repos.length}}</td>
         </tr>
