@@ -1,4 +1,4 @@
-angular.module('gitWhatWeMean.dependencies', [])
+angular.module('gitDepends.dependencies', [])
 
   .controller('DependenciesController', ['$scope', '$filter', 'Dependencies', function($scope, $filter, Dependencies) {
 

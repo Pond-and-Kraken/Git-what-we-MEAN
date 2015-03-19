@@ -1,5 +1,5 @@
-angular.module('gitWhatWeMean', [
-  'gitWhatWeMean.dependencies',
+angular.module('gitDepends', [
+  'gitDepends.dependencies',
   'ngRoute',
   'ui.router',
 ])

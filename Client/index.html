@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html ng-app='gitWhatWeMean'>
+<html ng-app='gitDepends'>
 <head>
     <meta charset="utf-8"/>
-    <title>Git What We MEAN</title>
+    <title>JS? Git Depends</title>
 <!--     <link rel="stylesheet" type="text/css" href="styles/style.css"/> -->
     <link rel="stylesheet" type="text/css" href="./lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="./lib/bootstrap/dist/css/bootstrap-theme.min.css"/>
 
 </head>
-<h1>Git What We MEAN</h1>
+<h1>JS? Git Depends</h1>
 <body>
 
 <div ui-view class="container">
 </div>
-
+<script>
+var loc = window.location.pathname;
+var dir = loc.substring(0, loc.lastIndexOf('/'));
+console.log("Current Directory:", dir);
+</script>
 <script src="./lib/angular/angular.js"></script>
 <script src="./lib/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="./lib/angular-route/angular-route.min.js"></script>
