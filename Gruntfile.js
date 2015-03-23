@@ -23,7 +23,7 @@ module.exports = function(grunt) {
 
     nodemon: {
       dev: {
-        script: 'index.js'
+        script: 'server.js'
       }
     },
 
@@ -88,7 +88,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  //grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
@@ -120,8 +120,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('build', [
     'concat',
-    'uglify',
-    'cssmin'
+    'uglify'
+    //'cssmin'
   ]);
 
   grunt.registerTask('upload', function(n) {
