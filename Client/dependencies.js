@@ -1,9 +1,12 @@
 angular.module('gitDepends.dependencies', [])
 
-  .controller('DependenciesController', ['$scope', '$filter', 'Dependencies', function($scope, $filter, Dependencies) {
+  .controller('DependenciesController', ['$scope', '$filter', 'Dependencies', 'SortLabel', function($scope, $filter, Dependencies, SortLabel) {
 
     $scope.data = [];
     $scope.search = '';
+    $scope.predicate = 'name';
+    $scope.toggleLabel = SortLabel.toggle;
+    $scope.showLabel = SortLabel.showLabel;
     $scope.getDependencies = function() {
       // Use Dependencies factory to get array of Dependeny objects from database
       // set $scope.dependencies to the array
@@ -30,4 +33,16 @@ angular.module('gitDepends.dependencies', [])
     return {
       getDependencies: getDependencies
     };
+  })
+  .factory('SortLabel',function(){
+    var labels = {"name":"A-Z","usage":"MostUsed-LeastUsed"};
+    return {
+      showLabel: function(labelKey){
+        return labels[labelKey];
+      },
+      toggle: function(labelKey){
+        var options = labels[labelKey].split("-");
+        labels[labelKey] = options[1]+"-"+options[0];
+      }
+    }
   });

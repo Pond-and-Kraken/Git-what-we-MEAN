@@ -11,9 +11,9 @@
         <input type="text" ng-model="search" placeholder="Search by Title">
     </section>
     <table class="table">
-        <th>Dependency Name</th>
-        <th>Usage</th>
-        <tr ng-repeat='dependency in dependencies | filter:{name: search}'>
+        <th><a href="" ng-click="predicate = 'name'; reverse=!reverse;toggleLabel('name');">Dependency Name</a> ({{showLabel("name")}})</th>
+        <th><a href="" ng-click="predicate = 'repos.length'; reverse=!reverse;toggleLabel('usage');">Usage</a> ({{showLabel("usage")}})</th>
+        <tr ng-repeat="dependency in dependencies | orderBy:predicate:reverse | filter:{name: search}">
             <td>{{dependency.name}}</td>
             <td>{{dependency.repos.length}}</td>
         </tr>
