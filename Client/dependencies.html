@@ -13,7 +13,7 @@
     <table class="table">
         <th>Dependency Name</th>
         <th>Usage</th>
-        <tr ng-repeat='dependency in data | filter:{name: search}'>
+        <tr ng-repeat='dependency in dependencies | filter:{name: search}'>
             <td>{{dependency.name}}</td>
             <td>{{dependency.repos.length}}</td>
         </tr>
