@@ -33,7 +33,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
         nodeDir.readFiles(dir, {match: /\.bower/},
           function(err, content, next) {
             if (err) throw err;
-            if(!content.match(/Not\sFound/)){
+            if(!content.match(/Not\sFound|DOCTYPE\shtml/)){
               parseData(content,next);
             } else {
               next();
