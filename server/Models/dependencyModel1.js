@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Repo = require('./repoModel.js');
+var Repo = require('./repoModel1.js');
 
 // create a mongoose schema for each of the library (or dependency) entries
 var DependencySchema = new mongoose.Schema({

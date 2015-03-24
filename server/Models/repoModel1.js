@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Dependency = require('./dependencyModel.js');
+var Dependency = require('./dependencyModel1.js');
 
 // create a mongoose schema for each Repository entry
 var RepoSchema = new mongoose.Schema({
@@ -10,14 +10,8 @@ var RepoSchema = new mongoose.Schema({
     unique: true
   },
   //add arrays of pointers for dependencies and dev dependencies
-  dependencies: [{
-    type: mongoose.Schema.Types.String,
-    ref: 'Dependency'
-  }],
-  devDependencies: [{
-    type: mongoose.Schema.Types.String,
-    ref: 'Dependency'
-  }]
+  dependencies: [],
+  devDependencies: []
 });
 
 //define the repo mongoose model

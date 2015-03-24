@@ -11,8 +11,9 @@ var mongoURI = process.env.MONGO || 'mongodb://localhost/meangit2';
 mongoose.connect(mongoURI);
 var db = mongoose.connection;
 
+exports.readJsonFiles = function() {
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function(callback) {
+//db.once('open', function(callback) {
   console.log('MONGODB CONNECTION OPEN');
 
   //https://github.com/fshost/node-dir
@@ -43,8 +44,8 @@ db.once('open', function(callback) {
             console.log('finished reading files:', files);
           });
       });
-
-});
+  //});
+};
 
 var parseData = function(toParse,next){
 /*
@@ -152,4 +153,4 @@ var updateDependency = function(dependency,repoName,nextIteration){
   );
 }
 
-module.exports = db;
+//module.exports = db;
