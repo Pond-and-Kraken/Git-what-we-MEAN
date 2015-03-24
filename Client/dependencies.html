@@ -1,18 +1,11 @@
 <div ng-controller="DependenciesController">
-    <!-- <div class="container">
-        <a href="#/links" class="navbar-brand">Shortly</a>
-        <ul class="nav navbar-default nav-tabs navbar-nav navbar-right">
-            <li ng-class="{ active:tab === 1}"><a href="#/links">Links</a></li>
-            <li ng-class="{ active:tab === 2}"><a href="#/shorten">Create Link</a></li>
-            <li ng-class="{ active:tab === 3}"><a href="#/logout">Logout</a></li>
-        </ul>
-    </div> -->
+    <a href="#/repos">Repos</a>
     <section class="col-md-offset-4">
         <input type="text" ng-model="search" placeholder="Search by Title">
     </section>
     <table class="table">
         <th><a href="" ng-click="predicate = 'name'; reverse=!reverse;toggleLabel('name');">Dependency Name</a> ({{showLabel("name")}})</th>
-        <th><a href="" ng-click="predicate = 'repos.length'; reverse=!reverse;toggleLabel('usage');">Usage</a> ({{showLabel("usage")}})</th>
+        <th><a href="" ng-click="predicate = '-repos.length'; reverse=!reverse;toggleLabel('usage');">Usage</a> ({{showLabel("usage")}})</th>
         <tr ng-repeat="dependency in dependencies | orderBy:predicate:reverse | filter:{name: search}">
             <td>{{dependency.name}}</td>
             <td>{{dependency.repos.length}}</td>

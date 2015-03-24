@@ -10,6 +10,7 @@ var getGit = require('./get-git.js');
 
 var routes = require('./server/routes/index.js');
 var dependencies = require('./server/routes/dependencies.js');
+var repos = require('./server/routes/repos.js');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, '/Client')));
 
 app.get('/', routes);
 app.get('/dependencies', dependencies);
+app.get('/repos', repos);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,14 @@
+<div ng-controller="ReposController">
+    <a href="#/dependencies">Dependencies</a>
+    <section class="col-md-offset-4">
+        <input type="text" ng-model="search" placeholder="Search by Title">
+    </section>
+    <table class="table">
+        <th><a href="" ng-click="predicate = 'name'; reverse=!reverse;toggleLabel('name');">Repo Name</a> ({{showLabel("name")}})</th>
+        <th><a href="" ng-click="predicate = '-numberOfDeps'; reverse=!reverse;toggleLabel('usage');">Number of Dependencies</a> ({{showLabel("usage")}})</th>
+        <tr ng-repeat="repo in repos | orderBy:predicate:reverse | filter:{name: search}">
+            <td>{{repo.name}}</td>
+            <td>{{repo.numberOfDeps}}</td>
+        </tr>
+    </table>
+</div>
